@@ -15,5 +15,4 @@ def readTournament(address: str) -> pd.core.frame.DataFrame:
         for team in tour["Команда"]:
             if team in value:
                 tour.replace({team: key}, inplace=True)
-    # tour = tour[tour['Команда'].isin(ratingList)]
     return tour

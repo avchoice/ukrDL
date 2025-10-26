@@ -36,8 +36,6 @@ def avgResultPerPlaces(address: str, unratedPlace: str) -> pd.core.frame.DataFra
         else:
             placesInRating.append(unratedPlace)
     tour["Місце в рейтингу"] = placesInRating
-    # print(tour['Команда'].to_list())
-    # print(tour.mean(numeric_only=True, axis=0).mean())
     avgres15 = tour[tour["Місце в рейтингу"]=="1-5"].sum(numeric_only=True, axis=1).mean()
     avgres610 = tour[tour["Місце в рейтингу"]=="6-10"].sum(numeric_only=True, axis=1).mean()
     avgres1115 = tour[tour["Місце в рейтингу"]=="11-15"].sum(numeric_only=True, axis=1).mean()
@@ -51,7 +49,6 @@ def avgResultPerPlaces(address: str, unratedPlace: str) -> pd.core.frame.DataFra
     means31plus.append(avgres31plus)
     if str(avgresur) != "nan":
         meansur.append(avgresur)
-    # print(tour[tour[5]>0].sum(numeric_only=True, axis=1).mean())      # mean where certain condition met
     return tour
 
 
