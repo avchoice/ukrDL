@@ -41,6 +41,15 @@ TEAM_MAPPING = {
 } # taken from Yevhen Filatov's code
 
 
+ratingFil_2425 = pd.read_csv("history2425only.csv")
+ratingList_2425 = ratingFil_2425["Команда"].to_list()
+teams15_2425 = ratingList_2425[0:5]
+teams610_2425 = ratingList_2425[5:10]
+teams1115_2425 = ratingList_2425[10:15]
+teams1630_2425 = ratingList_2425[15:30]
+teams31plus_2425 = ratingList_2425[30:]
+
+
 ratingFil = pd.read_csv("history.csv")
 ratingList = ratingFil["Команда"].to_list()
 teams15 = ratingList[0:5]

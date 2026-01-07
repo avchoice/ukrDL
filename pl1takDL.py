@@ -20,6 +20,13 @@ for key, value in ttd.tourneyTables.items():
 print("------")
 for key, value in ttd.tourneyTables2.items():
     pl1takDL(key, value)
+print("------")
+for key, value in ttd.tourneyTables3.items():
+    pl1takDL(key, value, rated=True, season="25/26")
+print("------")
+for key, value in ttd.tourneyTables4.items():
+    pl1takDL(key, value, rated=False, season="25/26")
+print("------")
 
 
 table = pd.DataFrame({"Назва": tourneyNames, "pl1takDL": tourneyDLs})
