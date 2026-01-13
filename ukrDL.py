@@ -8,19 +8,12 @@ tourneyNames = []
 tourneyDLs = []
 
 
-def ukrDL(address: str, name: str, rated: bool, season: str):
-    if season == "24/25":
-        teams15 = mtl.teams15_2425
-        teams610 = mtl.teams610_2425
-        teams1115 = mtl.teams1115_2425
-        teams1630 = mtl.teams1630_2425
-        teams31plus = mtl.teams31plus_2425
-    elif season == "25/26":
-        teams15 = mtl.teams15
-        teams610 = mtl.teams610
-        teams1115 = mtl.teams1115
-        teams1630 = mtl.teams1630
-        teams31plus = mtl.teams31plus
+def ukrDL(address: str, name: str, rated: bool):
+    teams15 = mtl.teams15
+    teams610 = mtl.teams610
+    teams1115 = mtl.teams1115
+    teams1630 = mtl.teams1630
+    teams31plus = mtl.teams31plus
     tour = readt.readTournament(address)
     dls = []
     N = tour.sum(numeric_only=True, axis=0).count()
@@ -54,18 +47,23 @@ def ukrDL(address: str, name: str, rated: bool, season: str):
 
 coeffs = {"1-5": 1.28, "6-10": 1.18, "11-15": 1.11, "16-30": 1.0, "31+": 0.71, "UR": 0.71}
 coeffsNotRated = {"1-5": 1.28, "6-10": 1.18, "11-15": 1.11, "16-30": 1.0, "31+": 0.73, "UR": 1.0}
+"""
 for key, value in ttd.tourneyTables.items():
-    ukrDL(key, value, rated=True, season="24/25")
+    ukrDL(key, value, rated=True)
 print("------")
 for key, value in ttd.tourneyTables2.items():
-    ukrDL(key, value, rated=False, season="24/25")
+    ukrDL(key, value, rated=False)
 print("------")
-for key, value in ttd.tourneyTables3.items():
-    ukrDL(key, value, rated=True, season="25/26")
+"""
+for key, value in ttd.newTourneyTablesRated.items():
+    ukrDL(key, value, rated=True)
 print("------")
-for key, value in ttd.tourneyTables4.items():
-    ukrDL(key, value, rated=False, season="25/26")
+for key, value in ttd.newTourneyTablesUnrated.items():
+    ukrDL(key, value, rated=False)
 print("------")
 
 table = pd.DataFrame({"Назва": tourneyNames, "ukrDL": tourneyDLs})
-table.to_excel('output/ukrdl.xlsx', index=False)
+# table.to_excel('output/ukrdl.xlsx', index=False)
+
+with pd.ExcelWriter('output/ukrdl.xlsx', engine='openpyxl', mode='a', if_sheet_exists='overlay') as writer:
+    table.to_excel(writer, sheet_name='Sheet1', header=False, index=False)

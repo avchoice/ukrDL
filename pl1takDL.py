@@ -15,17 +15,14 @@ def pl1takDL(address: str, name: str):
     print(f'pl1takDL турніру "{name}": {tourDifficulty}')
 
 
-for key, value in ttd.tourneyTables.items():
+for key, value in ttd.oldTourneyTables.items():
     pl1takDL(key, value)
 print("------")
-for key, value in ttd.tourneyTables2.items():
+for key, value in ttd.newTourneyTablesRated.items():
     pl1takDL(key, value)
 print("------")
-for key, value in ttd.tourneyTables3.items():
-    pl1takDL(key, value, rated=True, season="25/26")
-print("------")
-for key, value in ttd.tourneyTables4.items():
-    pl1takDL(key, value, rated=False, season="25/26")
+for key, value in ttd.newTourneyTablesUnrated.items():
+    pl1takDL(key, value)
 print("------")
 
 
