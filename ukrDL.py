@@ -2,6 +2,7 @@ import pandas as pd
 import makeTeamLists as mtl
 import tourneyTablesDict as ttd
 import readTournament as readt
+import openpyxl
 
 
 tourneyNames = []
@@ -65,5 +66,6 @@ print("------")
 table = pd.DataFrame({"Назва": tourneyNames, "ukrDL": tourneyDLs})
 # table.to_excel('output/ukrdl.xlsx', index=False)
 
+wb = openpyxl.load_workbook('output/ukrdl.xlsx')
 with pd.ExcelWriter('output/ukrdl.xlsx', engine='openpyxl', mode='a', if_sheet_exists='overlay') as writer:
-    table.to_excel(writer, sheet_name='Sheet1', header=False, index=False)
+    table.to_excel(writer, sheet_name='Sheet1', header=False, index=False, startrow=wb['Sheet1'].max_row)
