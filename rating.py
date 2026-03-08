@@ -57,7 +57,8 @@ TEAM_MAPPING = {
     "Lorem City": ["Lorem Ipsum"],
     "Легіон": ["Андрюша (Легіон)"],
     "ЩДКоти": ["Комети (ЩДКоти)"],
-    "Одиночество в SETI": ["Одиночество в SETI (м. Одеса)"],
+    "Одиночество в SETI": ["Одиночество в SETI (м. Одеса)", "Одиночество в SETI (м. Одесса)", "Один у полі воїн"],
+    "Валькірія": ["Валькирия"],
 }
 
 EXCLUDED_TEAMS = [
@@ -70,6 +71,7 @@ EXCLUDED_TEAMS = [
     "Неможна в ілюмінаторі",
     "Тжвжик",
     "This is Sparжааа",
+    "This is Sparжааа!!!",
     "Sich",
     "Soles",
     "BBQ test 300",
@@ -84,6 +86,19 @@ EXCLUDED_TEAMS = [
     "Rule34",
     "ДНК",
     "Андрюша",
+    "Діти Чорнобаївки",
+    "Желехівського 9",
+    "Зважені назавжди",
+    "Кицька кажана",
+    "Котіко",
+    "Сила Масла",
+    "Стокгольмський Синдром",
+    "Третя хвиля",
+    "Ядро Урана",
+    "TJD",
+    "Пів шишечки",
+    "Поки без назви",
+    "Прямокутна пухнаста корівка",
 ]
 
 
@@ -222,19 +237,47 @@ def game12():
         yield name, score
 
 
+def game13():
+    workbook = openpyxl.load_workbook("raw/2526 Поки зорить Чумацький Шлях.xlsx")
+    sheet = workbook.active
+    for row in sheet.iter_rows(min_row=2, values_only=True):
+        name = row[0]
+        score = row[1]
+
+        if name is None:
+            continue
+
+        yield name, score
+
+
+def game14():
+    workbook = openpyxl.load_workbook("raw/2526 СинЛУК Зима.xlsx")
+    sheet = workbook.active
+    for row in sheet.iter_rows(min_row=2, values_only=True):
+        name = row[0]
+        score = row[1]
+
+        if name is None:
+            continue
+
+        yield name, score
+
+
 GAMES = {
-    "Гра 1": {"loader": game1, "weight": 1},
-    "Гра 2": {"loader": game2, "weight": 1},
-    "Гра 3": {"loader": game3, "weight": 2},
-    "Гра 4": {"loader": game4, "weight": 1},
-    "Гра 5": {"loader": game5, "weight": 1},
-    "Гра 6": {"loader": game6, "weight": 2},
-    "Гра 7": {"loader": game7, "weight": 1},
-    "Гра 8": {"loader": game8, "weight": 1},
-    "Гра 9": {"loader": game9, "weight": 2},
-    "Гра 10": {"loader": game10, "weight": 1},
-    "Гра 11": {"loader": game11, "weight": 1},
-    "Гра 12": {"loader": game12, "weight": 2},
+    "24/25 Гра 1": {"loader": game1, "weight": 1},
+    "24/25 Гра 2": {"loader": game2, "weight": 1},
+    "24/25 Гра 3": {"loader": game3, "weight": 2},
+    "24/25 Гра 4": {"loader": game4, "weight": 1},
+    "24/25 Гра 5": {"loader": game5, "weight": 1},
+    "24/25 Гра 6": {"loader": game6, "weight": 2},
+    "24/25 Гра 7": {"loader": game7, "weight": 1},
+    "24/25 Гра 8": {"loader": game8, "weight": 1},
+    "24/25 Гра 9": {"loader": game9, "weight": 2},
+    "24/25 Гра 10": {"loader": game10, "weight": 1},
+    "24/25 Гра 11": {"loader": game11, "weight": 1},
+    "24/25 Гра 12": {"loader": game12, "weight": 2},
+    "25/26 Гра 1": {"loader": game13, "weight": 1},
+    "25/26 Гра 2": {"loader": game14, "weight": 1},
 }
 
 
